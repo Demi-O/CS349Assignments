@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>UTrack!</title>
+    <link rel="stylesheet" href="css/ext/bootstrap.css"/>
+    <link rel="stylesheet" href="css/utrack.css"/>
+</head>
+<body>
+
+<div id="app_container" class="container">
+
+    <h1 class="intro">UTrack!</h1>
+    <p class="intro">Track and analyze data that matters to you!</p>
+
+    <div id="buttons">
+        <button id="input_button" class="btn btn-primary" type="button">Input</button>
+        <button id="analysis_button" class="btn btn-primary" type="button">Analysis</button>
+    </div>
+
+    <div id="input_div">
+        <form id="input_form" class="form-horizontal">
+
+            <div id="activity" class="form-group">
+                <label class="col-sm-4 control-label">Activity:</label> 
+                <div class="col-sm-3">    
+                    <select id="activity_options" class="form-control">
+                        <option value="0">Attending Lectures</option>
+                        <option value="1">Coding</option>
+                        <option value="2">Eating</option>
+                        <option value="3">Playing Soccer</option>
+                        <option value="4">Sleeping</option>
+                        <option value="5">Studying</option>
+                        <option value="6">Watching TV</option>
+                    </select>
+                </div>
+            </div>
+
+            <div id="energy" class="form-group">
+                <label class="col-sm-4 control-label"> Energy Level:</label>
+                <div class="col-sm-2">
+                    <input id="energy_options" class="form-control" type="number" name="quantity" min="1" max="5" required="required">
+                </div>
+                <label class="col-sm-5"> (1 = Exhausted, 5 = Very Awake)</label>
+            </div>
+
+            <div id="stress" class="form-group">
+                <label class="col-sm-4 control-label"> Stress Level:</label>
+                <div class="col-sm-2">
+                    <input id="stress_options" class="form-control" type="number" name="quantity" min="1" max="5" required="required">
+                </div>
+                <label class="col-sm-5"> (1 = No Stress, 5 = Very Stressed)</label>
+            </div>
+
+            <div id="happiness" class="form-group">
+                <label class="col-sm-4 control-label"> Happiness Level:</label>
+                <div class="col-sm-2">
+                    <input id="happiness_options" class="form-control" type="number" name="quantity" min="1" max="5" required="required">
+                </div>
+                <label class="col-sm-5"> (1 = Depressed, 5 = Extremely Happy)</label>
+            </div>
+
+            <div id="time" class="form-group">
+                <label class="col-sm-4 control-label"> Time Spent:</label>
+                <div class="col-sm-2">
+                    <input id="time_options" class="form-control" type="number" name="quantity" min="1" max="600" required="required">
+                </div>
+                <label class="col-sm-5"> minutes</label>
+            </div>
+
+            <div id="submit-button" class="form-group">
+                <div class="col-sm-offset-1 col-sm-9">
+                  <button type="submit" id="submit_button" class="btn btn-primary">Submit</button>
+                </div>
+            </div>
+
+            <div id="last_submit" class="left_text">
+                Last data entry: No data entered yet
+            </div>
+
+        </form>
+    </div>
+
+    <div id="analysis_div">
+        <!-- Put HTML here to support users in analyzing their data -->
+        <div id="view_options">
+            <select id="dropdown" class="form-control">
+                <option value="0">Summary</option>
+                <option value="1">Data Entries</option>
+                <option value="2">Chart</option>
+            </select>
+        </div>
+
+        <div id="Summary" class = "center_text">
+            <label>Summary of Activities</label>
+            <table class="center_text" style="width:100%">
+                <tr>
+                    <td><b>Activities</b></td>
+                    <td><b>Time Spent (in minutes)</b></td>
+                </tr>
+                <tr>
+                    <td>Attending Lectures</td>
+                    <td id="attendingTimeSpent">0</td>
+                </tr>
+                <tr>
+                    <td>Coding</td>
+                    <td id="codingTimeSpent">0</td>
+                </tr>
+                <tr>
+                    <td>Eating</td>
+                    <td id="eatingTimeSpent">0</td>
+                </tr>
+                <tr>
+                    <td>Playing Soccer</td>
+                    <td id="soccerTimeSpent">0</td>
+                </tr>
+                <tr>
+                    <td>Sleeping</td>
+                    <td id="sleepingTimeSpent">0</td>
+                </tr>
+                <tr>
+                    <td>Studying</td>
+                    <td id="studyingTimeSpent">0</td>
+                </tr>
+                <tr>
+                    <td>Watching TV</td>
+                    <td id="watchingTimeSpent">0</td>
+                </tr>
+            </table>
+        </div>
+        
+        <div id="Data Entries" class = "center_text">
+            <label>Recent Data Entries</label> 
+            <table id ="data_table" class="center_text" style="width:100%">
+                <tr>
+                    <td><b>Activity</b></td>
+                    <td><b>Energy Level</b></td>
+                    <td><b>Stress Level</b></td>
+                    <td><b>Happiness Level</b></td>
+                    <td><b>Time Spent (in minutes)</b></td>
+                    <td></td>
+                </tr>
+            </table>
+        </div>
+
+        <div id="Chart" class = "center_text">
+            <label>Average Energy, Stress and Happiness Levels</label>
+            <div id="graph_div">
+                <canvas id="graph_canvas" height="700" width="600">
+
+                </canvas>
+            </div> 
+        </div>
+
+        <!-- <div>
+            <canvas id="canvas_demo">
+                If you don't have an HTML5-compatible browser, you'll see this text.
+
+                This canvas object can be removed after you understand canvas basics.
+            </canvas>
+        </div>
+        <button id="run_canvas_demo_button" class="btn btn-primary">Run Canvas Demo</button> -->
+    </div>
+
+    <div id="unit_tests">
+        <!-- Keep this here so TAs can run your unit tests -->
+        <a href="unit_tests.html">Run Unit Tests</a>
+    </div>
+
+</div>
+
+<script src="js/ext/underscore.js"></script>
+<script src="js/model.js"></script>
+<script src="js/view.js"></script>
+<script src="js/utrack.js"></script>
+</body>
+</html>
